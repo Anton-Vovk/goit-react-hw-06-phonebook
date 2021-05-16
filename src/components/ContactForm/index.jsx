@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { addContact } from '../../redux/phonebook/phonebook-actions';
 import styles from './ContactForm.module.css';
 
@@ -26,11 +28,11 @@ class ContactForm extends Component {
     });
 
     if (hasContactName) {
-      alert(`${name} is already in contacts!!!`);
+      toast.error(`${name} is already in contacts`);
       return;
     }
     if (hasContactNumber) {
-      alert(`${number} is already in contacts!!!`);
+      toast.error(`${number} is already in contacts`);
       return;
     }
 
@@ -72,6 +74,7 @@ class ContactForm extends Component {
             Add contact
           </button>
         </form>
+        <ToastContainer autoClose={3000} />
       </>
     );
   }
